@@ -63,8 +63,11 @@ const Header = () => {
           </ul>
         </nav>
       </div>
-      
-      <Link href={`https://calendly.com/meet-cyfotok/demo-session`} target="_blank">
+
+      <Link
+        href={`https://calendly.com/meet-cyfotok/demo-session`}
+        target="_blank"
+      >
         <RainbowButton className="hover:scale-105 transition duration-300 max-md:hidden">
           Book a Demo
         </RainbowButton>
@@ -114,9 +117,12 @@ const Header = () => {
                   easings: [0.12, 0, 0.39, 0],
                 }}
               >
-                <RainbowButton className="mx-5 text-sm hover:scale-105 transition duration-300 ">
-                  Book a Demo
-                </RainbowButton>
+                
+                <Link href={`https://calendly.com/meet-cyfotok/demo-session`} target="_blank">
+                  <RainbowButton className="mx-5 text-sm hover:scale-105 transition duration-300 ">
+                    Book a Demo
+                  </RainbowButton>
+                </Link>
               </motion.div>
             </ul>
           </motion.div>
