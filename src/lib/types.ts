@@ -127,3 +127,19 @@ export type Skill = {
   secDes: string;
 }[];
 
+export type SessionType = {
+  user?: {
+    name?: string | undefined;
+    image?: string | undefined;
+  };
+  expires?: string | undefined;
+};
+
+export type UserSession = {
+  user: {
+    name: string;
+    email: string;
+    image: string;
+  };
+  expires: string;
+};

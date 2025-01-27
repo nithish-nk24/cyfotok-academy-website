@@ -2,7 +2,7 @@
 import { resources, resourcesCategory } from "@/lib/types";
 import { Search } from "lucide-react";
 import  { useEffect, useState } from "react";
-import ResourceCard from "../components/resource-card";
+import ResourceCard from "../../components/resource-card";
 
 type ResourcesListProps = {
   resources: resources;

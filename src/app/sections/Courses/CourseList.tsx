@@ -1,4 +1,4 @@
-import Courses from "@/app/components/courses";
+import Courses from "@/components/courses";
 import { coursesData } from "../../../../public/assets/courses";
 
 
