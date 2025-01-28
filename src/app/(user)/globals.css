@@ -120,4 +120,7 @@
     scrollbar-width: none;
     /* Firefox */
   }
+  .section_container {
+    @apply px-6 py-10 max-w-7xl mx-auto;
+}
 }

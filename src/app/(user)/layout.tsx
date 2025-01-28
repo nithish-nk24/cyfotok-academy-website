@@ -2,6 +2,8 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
 import "./globals.css";
+import "easymde/dist/easymde.min.css";
+
 
 import { Toaster } from "@/components/ui/toaster";
 import Container from '../../components/container';

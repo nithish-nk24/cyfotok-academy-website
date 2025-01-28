@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 import { cn } from "@/lib/utils";
 
-import { Label } from "@/components/ui/label";
+import { Label } from "./label";
 import { Input } from "@/components/ui/input";
 import { login } from "@/lib/auth";
 import { toast } from "@/hooks/use-toast";

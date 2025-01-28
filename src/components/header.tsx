@@ -6,7 +6,7 @@ import { cn } from "../app/lib/utils";
 import { motion } from "framer-motion";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import { AlignJustify, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const routes = [
   {
@@ -31,11 +31,21 @@ const routes = [
   },
 ];
 const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
   const activePathName = usePathname();
   const [open, setOpen] = useState(false);
+  const handleScroll = () => {
+    setIsScrolled(window.scrollY > 0);
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  const navClassNames = isScrolled
+    ? "bg-white/50 backdrop-blur-sm border-none": "bg-transparent";
 
   return (
-    <header className="flex justify-between items-center border-b border-black/25 px-3 h-20 fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-sm max-w-screen-2xl mx-auto">
+    <header className={`flex justify-between items-center border-b border-black/25 px-3 h-20 fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-sm max-w-screen-2xl mx-auto ${navClassNames}`}>
       <div className="flex items-center ">
         <Logo />
         <nav className="h-full">
