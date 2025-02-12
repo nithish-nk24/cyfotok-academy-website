@@ -12,7 +12,7 @@ export default function Post(props) {
   // console.log(post);
 
   const slug = post?.slug;
-  
+
   if (!loading && !slug) {
     notFound();
   }
@@ -105,37 +105,55 @@ export default function Post(props) {
           )}
         </div>
 
-        {/* Content Section
-        <div className="bg-white dark:bg-gray-900 p-10 mt-10 rounded-xl shadow-lg border border-gray-200 dark:border-gray-800 leading-relaxed max-sm:px-2 max-sm:py-4">
-          
-        </div> */}
         <hr className="my-5" />
         <ReactMarkdown
-            className="prose max-w-screen-xl  break-all dark:prose-invert"
-            remarkPlugins={[remarkGfm]} // Enables tables, lists, and footnotes
-            components={{
-              h1: ({ node, ...props }) => <h1 className="text-4xl font-bold my-4 uppercase" {...props} />,
-              h2: ({ node, ...props }) => <h2 className="text-3xl font-semibold my-3" {...props} />,
-              p: ({ node, ...props }) => <p className="text-gray-700 dark:text-gray-300 my-2" {...props} />,
-              ul: ({ node, ...props }) => <ul className="list-disc list-inside my-3" {...props} />,
-              ol: ({ node, ...props }) => <ol className="list-decimal list-inside my-3" {...props} />,
-              blockquote: ({ node, ...props }) => (
-                <blockquote className="border-l-4 border-gray-500 pl-4 italic text-gray-600 dark:text-gray-300" {...props} />
-              ),
-              img: ({ node, ...props }) => (
-                <div className="flex justify-center my-4">
-                  <Image {...props} className="rounded-lg shadow-lg" width={600} height={400} alt={props.alt || "Image"} />
-                </div>
-              ),
-              code: ({ node, inline, className, children, ...props }) => (
-                <code className={`bg-gray-200 dark:bg-gray-800 px-2 py-1 rounded ${className || ""}`} {...props}>
-                  {children}
-                </code>
-              ),
-            }}
-          >
-            {post.pitch}
-          </ReactMarkdown>
+          className="prose max-w-screen-xl  break-all dark:prose-invert"
+          remarkPlugins={[remarkGfm]} // Enables tables, lists, and footnotes
+          components={{
+            h1: ({ node, ...props }) => (
+              <h1 className="text-4xl font-bold my-4 uppercase" {...props} />
+            ),
+            h2: ({ node, ...props }) => (
+              <h2 className="text-3xl font-semibold my-3" {...props} />
+            ),
+            p: ({ node, ...props }) => (
+              <p className="text-gray-700 dark:text-gray-300 my-2" {...props} />
+            ),
+            ul: ({ node, ...props }) => (
+              <ul className="list-disc list-inside my-3" {...props} />
+            ),
+            ol: ({ node, ...props }) => (
+              <ol className="list-decimal list-inside my-3" {...props} />
+            ),
+            blockquote: ({ node, ...props }) => (
+              <blockquote
+                className="border-l-4 border-gray-500 pl-4 italic text-gray-600 dark:text-gray-300"
+                {...props}
+              />
+            ),
+            img: ({ node, ...props }) => (
+              <div className="flex justify-center my-4">
+                <Image
+                  {...props}
+                  className="rounded-lg shadow-lg"
+                  width={600}
+                  height={400}
+                  alt={props.alt || "Image"}
+                />
+              </div>
+            ),
+            code: ({ node, inline, className, children, ...props }) => (
+              <code
+                className={`bg-gray-200 dark:bg-gray-800 px-2 py-1 rounded ${className || ""}`}
+                {...props}
+              >
+                {children}
+              </code>
+            ),
+          }}
+        >
+          {post.pitch}
+        </ReactMarkdown>
 
         {/* Back Button */}
         <div className="mt-12 text-center">
