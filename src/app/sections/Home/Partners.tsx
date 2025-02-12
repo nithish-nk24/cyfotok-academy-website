@@ -1,4 +1,4 @@
-import { MarqueeDemo } from "../../components/marqueePartner";
+import { MarqueeDemo } from "../../../components/marqueePartner";
 
 const Partners = () => {
   return (

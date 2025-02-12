@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { contactBG, socialLink } from "../../../../public/assets/assets";
 import { RainbowButton } from "@/components/ui/rainbow-button";
-import SocialIcons from "../../components/social-Icons";
+import SocialIcons from "../../../components/social-Icons";
 
 const Contact = () => {
   return (

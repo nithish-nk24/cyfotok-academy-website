@@ -1,6 +1,6 @@
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import { externalLinks } from "../../../../public/assets/assets";
-import LinkButton from "../../components/link-button";
+import LinkButton from "../../../components/link-button";
 
 const ExternalLinks = () => {
   return (

@@ -1,4 +1,4 @@
-import CourseCard from "@/app/components/course-card";
+import CourseCard from "@/components/course-card";
 import { CourseData } from "@/lib/types";
 
 type SkillCourseProps = {
