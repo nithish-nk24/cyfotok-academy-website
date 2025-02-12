@@ -1,4 +1,3 @@
-
 import { defineField, defineType } from "sanity";
 
 export const blog = defineType({
@@ -8,6 +7,10 @@ export const blog = defineType({
   fields: [
     defineField({
       name: "title",
+      type: "string",
+    }),
+    defineField({
+      name: "metaTitle",
       type: "string",
     }),
     defineField({
@@ -28,8 +31,16 @@ export const blog = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name:'category',
-      type:'string',
+      name: "metaKeywords",
+      type: "string",
+    }),
+    defineField({
+      name: "category",
+      type: "string",
+    }),
+    defineField({
+      name: "metaDescription",
+      type: "text",
     }),
     defineField({
       name: "description",

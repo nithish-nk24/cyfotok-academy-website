@@ -1,12 +1,12 @@
 import Link from "next/link";
-import Container from "@/components/container";
 import PostList from "@/components/postlist";
+import Container from "./container";
 
 export default function HomePage({ posts }) {
   return (
     <>
       {posts && (
-        <Container>
+        <Container  >
           <div className="grid gap-10 md:grid-cols-2 lg:gap-10 mt-10 ">
             {posts.slice(0, 2).map(post => (
               <PostList

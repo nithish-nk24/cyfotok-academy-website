@@ -137,3 +137,6 @@
     /* Firefox */
   }
 }
+.w-md-editor-toolbar {
+  padding: 10px !important;
+}

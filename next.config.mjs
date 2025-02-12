@@ -19,6 +19,10 @@ const nextConfig = {
       }
     ],
   },
+  experimental:{
+    serverActions: true,
+    // ppr:'incremental'
+  }
 };
 
 export default nextConfig;

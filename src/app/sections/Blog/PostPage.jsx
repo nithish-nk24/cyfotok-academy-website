@@ -3,21 +3,23 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { parseISO, format } from "date-fns";
 import CategoryLabel from "@/components/blog/category";
-import markdown from "markdown-it";
-
-const md = markdown();
+import markdownit from "markdown-it";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+const md = markdownit();
 export default function Post(props) {
   const { loading, post } = props;
+  // console.log(post);
 
   const slug = post?.slug;
-
+  
   if (!loading && !slug) {
     notFound();
   }
 
   const imageProps = post?.image;
   const AuthorimageProps = post?.author?.image;
-  const parsedContent = md.render(post?.pitch || "");
+  const parsedContent = md.render(post?.pitch);
 
   return (
     <>
@@ -59,7 +61,6 @@ export default function Post(props) {
                     "MMMM dd, yyyy"
                   )}
                 </time>
-                <span>· {post.estReadingTime || "5"} min read</span>
               </div>
             </div>
           </div>
@@ -91,7 +92,7 @@ export default function Post(props) {
       </section> */}
       <section className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-12">
         {/* Image Section */}
-        <div className="relative mx-auto aspect-video max-w-screen-lg overflow-hidden rounded-2xl shadow-xl border border-gray-300 dark:border-gray-700 transition-transform duration-500 hover:scale-105">
+        <div className="relative mx-auto aspect-video max-w-4xl overflow-hidden rounded-2xl shadow-xl border border-gray-300 dark:border-gray-700 transition-transform duration-500 hover:scale-105">
           {imageProps && (
             <Image
               src={imageProps}
@@ -104,19 +105,37 @@ export default function Post(props) {
           )}
         </div>
 
-        {/* Content Section */}
+        {/* Content Section
         <div className="bg-white dark:bg-gray-900 p-10 mt-10 rounded-xl shadow-lg border border-gray-200 dark:border-gray-800 leading-relaxed max-sm:px-2 max-sm:py-4">
-          {parsedContent ? (
-            <article
-              className="prose lg:prose-xl dark:prose-invert prose-a:text-blue-600 text-lg font-light max-sm:text-xs max-sm:p-1 max-sm:leading-snug max-sm:tracking-tight"
-              dangerouslySetInnerHTML={{ __html: parsedContent }}
-            />
-          ) : (
-            <p className="text-center text-gray-500 dark:text-gray-400 text-lg">
-              No Details Provided
-            </p>
-          )}
-        </div>
+          
+        </div> */}
+        <hr className="my-5" />
+        <ReactMarkdown
+            className="prose max-w-screen-xl  break-all dark:prose-invert"
+            remarkPlugins={[remarkGfm]} // Enables tables, lists, and footnotes
+            components={{
+              h1: ({ node, ...props }) => <h1 className="text-4xl font-bold my-4 uppercase" {...props} />,
+              h2: ({ node, ...props }) => <h2 className="text-3xl font-semibold my-3" {...props} />,
+              p: ({ node, ...props }) => <p className="text-gray-700 dark:text-gray-300 my-2" {...props} />,
+              ul: ({ node, ...props }) => <ul className="list-disc list-inside my-3" {...props} />,
+              ol: ({ node, ...props }) => <ol className="list-decimal list-inside my-3" {...props} />,
+              blockquote: ({ node, ...props }) => (
+                <blockquote className="border-l-4 border-gray-500 pl-4 italic text-gray-600 dark:text-gray-300" {...props} />
+              ),
+              img: ({ node, ...props }) => (
+                <div className="flex justify-center my-4">
+                  <Image {...props} className="rounded-lg shadow-lg" width={600} height={400} alt={props.alt || "Image"} />
+                </div>
+              ),
+              code: ({ node, inline, className, children, ...props }) => (
+                <code className={`bg-gray-200 dark:bg-gray-800 px-2 py-1 rounded ${className || ""}`} {...props}>
+                  {children}
+                </code>
+              ),
+            }}
+          >
+            {post.pitch}
+          </ReactMarkdown>
 
         {/* Back Button */}
         <div className="mt-12 text-center">

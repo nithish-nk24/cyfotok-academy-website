@@ -4,7 +4,7 @@ import { auth, signIn, signOut } from "@/auth";
 import { UserSession } from "./types";
 
 export const login = async (userId: string, password: string) => {
-  if (userId == "admin" && password == "admin") {
+  if (userId == "najas" && password == "nazar") {
     await signIn("github", { redirectTo: "/admin/dashboard" });
   } else {
     return false;

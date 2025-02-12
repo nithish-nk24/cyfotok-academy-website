@@ -44,7 +44,7 @@ export default function PostList({
               priority={!!preloadImage}
               className="object-cover transition-all"
               fill
-              sizes="(max-width: 768px) 30vw, 33vw"
+              sizes="(max-width: 7668px) 30vw, 33vw"
             />
           ) : (
             <span className="absolute left-1/2 top-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2 text-gray-200">

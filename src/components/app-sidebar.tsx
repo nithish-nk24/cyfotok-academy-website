@@ -36,7 +36,7 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar {...props}>
-      <SidebarHeader>
+      <SidebarHeader className="max-sm:bg-white">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
@@ -53,7 +53,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="max-sm:bg-white">
         <ul className="flex flex-col gap-y-1 ">
           {data.navMain.map((link, index) => (
             <li key={index} className="p-1">
@@ -66,7 +66,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           ))}
         </ul>
       </SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter className="max-sm:bg-white">
         <div className="p-1">
           <SidebarOptInForm />
         </div>
