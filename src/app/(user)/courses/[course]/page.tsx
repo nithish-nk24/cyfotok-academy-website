@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import Loading from "../loading";
 import CourseHero from "@/app/sections/Courses/CourseHero";
 import CourseList from "@/app/sections/Courses/CourseList";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: {
@@ -12,13 +13,15 @@ type Props = {
   };
 };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const course = params.course;
+  const { course } = await params;
   return {
     title: course === "all" ? "All Courses" : `${course} Courses`,
   };
 }
-const page = ({ params }: Props) => {
-  const course = params.course;
+const page = async({ params }: Props) => {
+  const course = (await params).course;
+
+  if(!course) return notFound()
   // console.log(course);
 
   return (

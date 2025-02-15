@@ -10,28 +10,33 @@ type CourseDetailPageProp = {
     slug: string;
   };
 };
-export async function generateMetadata({
-  params,
-}: CourseDetailPageProp): Promise<Metadata> {
-  //getting params and filtering data
-  const title = coursesData.filter((course) => course.id === params.slug);
+
+export async function generateMetadata({ params }: CourseDetailPageProp): Promise<Metadata> {
+  const courses = await coursesData; // Ensure coursesData is awaited first
+  const course = courses.find((course) => course.id === params.slug);
+
+  if (!course) {
+    return {
+      title: "Course Not Found",
+    };
+  }
+
   return {
-    //after filtering data setting title
-    title: title[0].title,
+    title: course.title,
   };
 }
+
 const CourseDetailPage = async ({ params }: CourseDetailPageProp) => {
-  // console.log(params);
-  const filteredCourse = coursesData.filter(
-    (course) => course.id === params.slug
-  );
+  const courses = await coursesData; // Ensure coursesData is awaited
+  const filteredCourse = courses.filter((course) => course.id === params.slug);
+
+  if (filteredCourse.length === 0) {
+    return <div className="mt-28 px-3 text-center text-xl">Course not found</div>;
+  }
 
   return (
     <main className="mt-28 px-3">
-      <PagePath
-        category={filteredCourse[0].category}
-        param={filteredCourse[0].title}
-      />
+      <PagePath category={filteredCourse[0].category} param={filteredCourse[0].title} />
       <Suspense fallback={<Loading />}>
         <CourseDetails courses={filteredCourse} />
       </Suspense>
