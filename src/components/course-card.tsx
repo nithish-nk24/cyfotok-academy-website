@@ -13,6 +13,8 @@ type CourseCardProps = {
   classes: number | string;
   selling?: string;
   metaTitle?: string;
+  discountedPrice: number;
+  originalPrice: number;
 };
 
 const CourseCard = ({
@@ -23,6 +25,8 @@ const CourseCard = ({
   id,
   selling,
   metaTitle,
+  discountedPrice,
+  originalPrice,
 }: CourseCardProps) => {
   return (
     <Link href={`/course/${id}`}>
@@ -74,15 +78,26 @@ const CourseCard = ({
             </h2>
             <div className="flex flex-col h-16 justify-between">
               <p className="text-xs">{metaTitle}</p>
-              <ul className="flex items-center gap-2">
+              <ul className="flex items-center gap-2 justify-between">
                 <li className="flex items-center  text-black rounded shadow-md bg-slate-200 text-xs font-semibold  px-1 py-1">
                   <CalendarDays className="w-5 h-5 " />
                   <span className="ml-1 -mb-1 text-sm">{duration}</span>
                 </li>
-                {/* <li className="flex items-center  text-white rounded shadow-md bg-orange-500 text-xs font-thin  px-1 py-1">
+                {/* <li className="flex items-center  text-white trollrounded shadow-md bg-orange-500 text-xs font-thin  px-1 py-1">
                   <School className="w-5 h-5 opacity-70" />
                   <span className="ml-1 -mb-1 text-sm">{`${classes} Classes`}</span>
                 </li> */}
+                <li className="text-xl text-green-600 font-bold">
+                  <p className="text-black">
+                    ₹
+                    <span className="text-green-600">
+                      {` ${discountedPrice}/-`}{" "}
+                    </span>
+                    <span className="ml-1 text-xs line-through text-black">
+                      {originalPrice}/-
+                    </span>
+                  </p>
+                </li>
               </ul>
             </div>
           </div>
