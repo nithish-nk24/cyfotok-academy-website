@@ -1,6 +1,7 @@
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import { externalLinks } from "../../../../public/assets/assets";
 import LinkButton from "../../../components/link-button";
+import Link from "next/link";
 
 const ExternalLinks = () => {
   return (
@@ -18,12 +19,16 @@ const ExternalLinks = () => {
         ))}
       </div>
       <div className="flex justify-center gap-x-2">
+        <Link href={'/courses/all'}>
         <RainbowButton className="bg-gradient-to-r from-pink-500 to-rose-500 px-4 py-6 rounded-lg hover:scale-105  duration transition hover:bg-white hover:bg-transparent ">
           Start Learning Now
         </RainbowButton>
+        </Link>
+        <Link href={'https://calendly.com/meet-cyfotok/demo-session'}>
         <RainbowButton className="px-4 py-6 rounded-lg hover:scale-105  duration transition">
             Train with us
           </RainbowButton>
+        </Link>
       </div>
     </section>
   );
