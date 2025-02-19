@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="p-5">
       <div className="flex justify-between items-center">
         <Logo />
-        <p className="text-black/80">© 2024 Cyfotok Academy</p>
+        <p className="text-black/80">© 2025 Cyfotok Academy</p>
       </div>
       <hr className="my-3" />
       <div className="my-6 grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5">
@@ -41,7 +41,7 @@ const Footer = () => {
         </div>
       </div>
       <p className="text-black/80 text-center font-semibold">
-        Cyfotok Academy,© All Rights Reserved 2024
+        Cyfotok Academy,© All Rights Reserved 2025
       </p>
       <hr className="my-3" />
     </footer>

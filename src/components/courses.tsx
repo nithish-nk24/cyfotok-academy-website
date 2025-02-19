@@ -58,6 +58,9 @@ const Courses = ({ course }: CoursesProps) => {
               duration={item.duration}
               classes={item.class}
               selling={item.state}
+              metaTitle={item.metaTitle}
+              discountedPrice={item.discountedPrice}
+              originalPrice={item.originalPrice}
             />
           ))}
       </div>

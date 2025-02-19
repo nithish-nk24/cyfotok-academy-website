@@ -120,32 +120,32 @@ export const facilitiesData = [
 export const externalLinks = [
   {
     title: "CyberSecurity",
-    link: "/cybersecurity",
+    link: "/courses/all",
     img: skill,
   },
   {
     title: "Web Development",
-    link: "/web-development",
+    link: "/courses/all",
     img: moniter,
   },
   {
     title: "Digital Marketing",
-    link: "/digital-marketing",
+    link: "/courses/all",
     img: certificatePrep,
   },
   {
     title: "App Development",
-    link: "/app-development",
+    link: "/courses/all",
     img: careerGuidance,
   },
   {
     title: "Artificial Intelligence",
-    link: "/artificial-intelligence",
+    link: "/courses/all",
     img: virus,
   },
   {
     title: "UI/UX Design",
-    link: "/ui-ux-design",
+    link: "/courses/all",
     img: star2,
   },
 ];
@@ -154,16 +154,16 @@ export const testimonials = [
   {
     quote:
       "The attention to detail and innovative features have completely transformed our workflow. This is exactly what we've been looking for.",
-    name: "Farzeel",
-    designation: "Business Analyst",
-    src: "https://utfs.io/f/NBpxSs18C7Kd5USzC7TSgvehmJYnEf1Tk4UcX3zLqCuOlyD0",
+    name: "Anchitha",
+    designation: "Intern Cybersecurity Analyst",
+    src: "https://9tyd79g1bs.ufs.sh/f/CVETMkBmijEYfe0dmGWHJVQzwXkF4WBqS3id5bZNjt71l6UO",
   },
   {
     quote:
       "Implementation was seamless and the results exceeded our expectations. The platform's flexibility is remarkable.",
     name: "Adhithyan",
     designation: "Intern Cybersecurity Analyst",
-    src: "https://utfs.io/f/NBpxSs18C7Kds34seFj0jeKq3dYIlTZyik9SuWzgRfrtALcb",
+    src: "https://9tyd79g1bs.ufs.sh/f/CVETMkBmijEYIjvucAEH4dEo1ejPafqiWmZylh9JT0OwX2n6",
   },
 ];
 
@@ -193,23 +193,23 @@ export const socialLink = [
 export const FooterCourses = [
   {
     title: "Cybersecurity",
-    link: "/cybersecurity",
+    link: "/courses/all",
   },
   {
     title: "Web Development",
-    link: "/web-development",
+    link: "/courses/all",
   },
   {
     title: "Artificial Intelligence",
-    link: "/artificial-intelligence",
+    link: "/courses/all",
   },
   {
     title: "Digital Marketing",
-    link: "/digital-marketing",
+    link: "/courses/all",
   },
   {
     title: "UI/UX Design",
-    link: "/ui-ux-design",
+    link: "/courses/all",
   },
 ];
 

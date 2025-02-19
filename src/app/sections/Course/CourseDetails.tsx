@@ -1,21 +1,91 @@
+"use client";
 import Image from "next/image";
 import { CalendarDays, LetterText, School, Trophy } from "lucide-react";
 import ShineBorder from "@/components/ui/shine-border";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-import { CourseData } from "@/lib/types";
+import { CourseData, RazorpayOptions } from "@/lib/types";
 import FacilitiesCard from "@/components/facilitiesCard";
 import CourseDescription from "../CourseDescription";
 import { whatsapp, facilitiesData } from "../../../../public/assets/assets";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+declare global {
+  interface Window {
+    Razorpay: any;
+  }
+}
 
 type CoursesProps = {
   courses: CourseData[];
 };
 const CourseDetails = ({ courses }: CoursesProps) => {
   const courseData = courses[0];
+  const [loading, setLoading] = useState<boolean>(false);
+  const [razorpayLoaded, setRazorpayLoaded] = useState<boolean>(false);
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+    script.onload = () => setRazorpayLoaded(true);
+    document.body.appendChild(script);
+  }, []);
+  const handlePayment = async () => {
+    if (!razorpayLoaded) {
+      alert("Razorpay SDK not loaded yet. Please try again in a moment.");
+      return;
+    }
+  
+    setLoading(true);
+  
+    const res = await fetch("/api/razorpay", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ amount: courseData.discountedPrice, currency: "INR" }),
+    });
+  
+    const data = await res.json();
+    setLoading(false);
+  
+    if (!data.success) {
+      alert("Payment failed. Try again.");
+      return;
+    }
+  
+    if (typeof window !== "undefined" && window.Razorpay) {
+      const options = {
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
+        amount: data.amount, // Ensure it's in paisa
+        currency: "INR",
+        name: "Cyfotok Academy",
+        description: "Course Enrollment",
+        order_id: data.order_id,
+        handler: (response: any) => {
+          alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
+        },
+        prefill: {
+          name: "", // Update this with user input
+          email: "", // Update this with user input
+          contact: "", // Update this with user input
+        },
+        theme: { color: "#F37254" },
+      };
+  
+      const razorpay = new window.Razorpay(options);
+      razorpay.open();
+    } else {
+      alert("Razorpay SDK failed to load. Please refresh and try again.");
+    }
+  };
+  
   return (
-    <section className="my-10">
+    <motion.section
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 1, duration: 0.5 }}
+      className="my-10"
+    >
       <ShineBorder
         color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
         className="p-0"
@@ -70,7 +140,7 @@ const CourseDetails = ({ courses }: CoursesProps) => {
               Languages Covered: {courseData.language}
             </p>
 
-            <div className="flex gap-2">
+            <div className="flex gap-2 justify-between">
               <Button className="px-5 py-2 text-xl font-semibold bg-black text-blacktext-white max-sm:text-base">
                 Book Demo
               </Button>
@@ -86,6 +156,13 @@ const CourseDetails = ({ courses }: CoursesProps) => {
                   Chat With WhatsApp
                 </Button>
               </Link>
+              <Button
+                className="px-5 py-2 text-xl font-semibold bg-blue-950 hover:bg-blue-900 text-blacktext-white max-sm:text-base"
+                onClick={handlePayment}
+                disabled={loading}
+              >
+                {loading ? "Processing..." : "Enroll Now"}{" "}
+              </Button>
             </div>
           </div>
         </div>
@@ -101,7 +178,7 @@ const CourseDetails = ({ courses }: CoursesProps) => {
           <FacilitiesCard key={index} {...item} />
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 };
 
