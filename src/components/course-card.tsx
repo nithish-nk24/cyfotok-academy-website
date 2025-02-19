@@ -105,12 +105,14 @@ const CourseCard = ({
             <Link href={`/course/${id}`} className="w-1/2">
               <Button className="w-full">View Details</Button>
             </Link>
-            <Button className="w-1/2 bg-gradient-to-r from-pink-500 to-rose-500 flex items-center">
-              <span>
-                <Download />
-              </span>
-              Brochure
-            </Button>
+            <Link href={`/contact`} className="w-1/2">
+              <Button className="w-full bg-gradient-to-r from-pink-500 to-rose-500 flex items-center">
+                <span>
+                  <Download />
+                </span>
+                Brochure
+              </Button>
+            </Link>
           </div>
         </div>
       </ShineBorder>
