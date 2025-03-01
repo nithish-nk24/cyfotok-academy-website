@@ -107,17 +107,17 @@ export default function Post(props) {
 
         <hr className="my-5" />
         <ReactMarkdown
-          className="prose max-w-screen-xl  break-all dark:prose-invert"
+          className="prose max-w-4xl w-full mx-auto  dark:prose-invert text-pretty"
           remarkPlugins={[remarkGfm]} // Enables tables, lists, and footnotes
           components={{
             h1: ({ node, ...props }) => (
-              <h1 className="text-4xl font-bold my-4 uppercase" {...props} />
+              <h1 className="text-2xl font-bold my-4 uppercase" {...props} />
             ),
             h2: ({ node, ...props }) => (
               <h2 className="text-3xl font-semibold my-3" {...props} />
             ),
             p: ({ node, ...props }) => (
-              <p className="text-gray-700 dark:text-gray-300 my-2" {...props} />
+              <p className="text-gray-700 dark:text-gray-300 my-2 " {...props} />
             ),
             ul: ({ node, ...props }) => (
               <ul className="list-disc list-inside my-3" {...props} />
@@ -141,6 +141,16 @@ export default function Post(props) {
                   alt={props.alt || "Image"}
                 />
               </div>
+            ),
+            a: ({ node, ...props }) => (
+              <a
+                className="text-blue-600 dark:text-blue-400 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+                {...props}
+              >
+                {props.children}
+              </a>
             ),
             code: ({ node, inline, className, children, ...props }) => (
               <code
